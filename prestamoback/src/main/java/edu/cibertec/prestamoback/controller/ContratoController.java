@@ -28,18 +28,18 @@ public class ContratoController {
     @GetMapping(value="/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ContratoEntity> obtenerContrato(@PathVariable("id") int id){
        var contrato=this.contratoService.obtenerPorId(id);
-       contrato.setCliente(this.clienteService.obtenerPorId(contrato.getCliente().getId()));
+       contrato.setClientela(this.clienteService.obtenerPorId(contrato.getClientela().getId()));
        return ResponseEntity.ok(contrato);
     }
     @PostMapping
     public void insertarContrato(@RequestBody ContratoEntity contrato){
-        contrato.setCliente(this.clienteService.obtenerPorId(contrato.getCliente().getId()));
+        contrato.setClientela(this.clienteService.obtenerPorId(contrato.getClientela().getId()));
         this.contratoService.insertarContrato(contrato);
     }
     @PutMapping("/{id}")
     public void modificarContrato(@PathVariable("id") int id, @RequestBody ContratoEntity contrato){
         contrato.setId(id);
-        contrato.setCliente(clienteService.obtenerPorId(contrato.getCliente().getId()));
+        contrato.setClientela(clienteService.obtenerPorId(contrato.getClientela().getId()));
         this.contratoService.modificarContrato(contrato);
     }
     @DeleteMapping("/{id}")

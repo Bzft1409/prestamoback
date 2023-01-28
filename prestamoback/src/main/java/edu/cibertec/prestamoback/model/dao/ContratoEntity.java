@@ -21,7 +21,7 @@ public class ContratoEntity {
     private Double interest;
     @Column(name = "divisa")
     private String currency;
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "id_cliente")
-    private ClienteEntity cliente;
+    private ClienteEntity clientela;
 }

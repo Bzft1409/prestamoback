@@ -19,8 +19,8 @@ public class AccountEntity {
     private Double amount;
     @Column(name = "divisa")
     private String currency;
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "id_cliente")
-    private ClienteEntity cliente;
+    private ClienteEntity clientela;
 
 }

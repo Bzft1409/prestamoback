@@ -24,26 +24,23 @@ public class AccountController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<AccountEntity>> listarCuentas(){
         var lista=accountService.obtenerCuentas();
-        for(AccountEntity cuenta:lista){
-            cuenta.setCliente(this.clienteService.obtenerPorId(cuenta.getId()));
-        }
-        return ResponseEntity.ok(lista);
+        return ResponseEntity.ok().body(lista);
     }
     @GetMapping(value="/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AccountEntity> obtenerContrato(@PathVariable("id") int id){
         var cuenta=this.accountService.obtenerPorId(id);
-        cuenta.setCliente(this.clienteService.obtenerPorId(cuenta.getCliente().getId()));
+        cuenta.setClientela(this.clienteService.obtenerPorId(cuenta.getClientela().getId()));
         return ResponseEntity.ok(cuenta);
     }
     @PostMapping
     public void insertarCuenta(@RequestBody AccountEntity cuenta){
-        cuenta.setCliente(this.clienteService.obtenerPorId(cuenta.getCliente().getId()));
+        cuenta.setClientela(this.clienteService.obtenerPorId(cuenta.getClientela().getId()));
         this.accountService.insertarCuenta(cuenta);
     }
     @PutMapping("/{id}")
     public void modificarContrato(@PathVariable("id") int id, @RequestBody AccountEntity cuenta){
         cuenta.setId(id);
-        cuenta.setCliente(clienteService.obtenerPorId(cuenta.getCliente().getId()));
+        cuenta.setClientela(clienteService.obtenerPorId(cuenta.getClientela().getId()));
         this.accountService.modificarCuenta(cuenta);
     }
     @DeleteMapping("/{id}")
